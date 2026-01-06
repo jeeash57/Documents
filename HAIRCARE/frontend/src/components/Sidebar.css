@@ -1,0 +1,128 @@
+.app-sidebar {
+    width: 320px;
+    height: 100vh;
+    background: #fff;
+    border-right: 1px solid #f0f0f0;
+    padding: 0 40px;
+    /* Adjusted padding to match header alignment */
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: -320px;
+    z-index: 1200;
+    transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.app-sidebar.open {
+    left: 0;
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1150;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s;
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sidebar-header {
+    height: 80px;
+    /* Match header height */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.sidebar-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #000;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-brand {
+    opacity: 0;
+    transition: opacity 0.4s ease 0.1s;
+    /* Slight delay to feel like a "handoff" */
+    display: flex;
+    margin-left: 35px;
+    /* Aligns with where the header logo was (40px header padding + ~40px menu toggle) */
+}
+
+.sidebar-brand.fade-in {
+    opacity: 1;
+}
+
+.sidebar-brand a {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.brand-main {
+    font-size: 24px;
+    /* Same as header for seamless sync */
+    font-weight: 800;
+    color: #000;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+}
+
+.brand-sub {
+    font-size: 11px;
+    font-weight: 400;
+    color: #666;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 2px;
+}
+
+.sidebar-nav {
+    flex: 1;
+    padding-top: 20px;
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-item {
+    display: block;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 800;
+    color: #ccc;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    color: #000;
+    padding-left: 10px;
+}
+
+.sidebar-footer {
+    padding: 40px 0;
+    border-top: 1px solid #f0f0f0;
+}

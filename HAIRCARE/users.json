@@ -1,0 +1,25 @@
+{
+  "gv@gv.com": {
+    "email": "gv@gv.com",
+    "password": "gv57",
+    "totp_secret": "ZWDIXAIVIM2ZE75KLSYETNG44VHGI4BY",
+    "verified": false,
+    "name": "gv"
+  },
+  "gv1@gv.com": {
+    "email": "gv1@gv.com",
+    "password": "gv57",
+    "totp_secret": "YH7S6DKUE7ADXT2JZZVQHNNON4V4WVD7",
+    "verified": false,
+    "tfa_enabled": false,
+    "name": "gvet"
+  },
+  "jeevi@gmail.com": {
+    "email": "jeevi@gmail.com",
+    "password": "jeevi123",
+    "totp_secret": "E6TWI6N7XPQ7DGQO7O3XMAQMWRFK7IJQ",
+    "verified": false,
+    "tfa_enabled": false,
+    "name": "jeevi"
+  }
+}
