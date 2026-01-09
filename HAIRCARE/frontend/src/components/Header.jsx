@@ -24,7 +24,15 @@ const Header = ({ onMenuClick, isSidebarOpen }) => {
                     </div>
 
                     <div className="header-search">
-                        <input type="text" placeholder="Search..." />
+                        <input
+                            type="text"
+                            placeholder="Search products..."
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    navigate(`/products?search=${encodeURIComponent(e.target.value)}`);
+                                }
+                            }}
+                        />
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                     </div>
                 </div>
@@ -34,6 +42,9 @@ const Header = ({ onMenuClick, isSidebarOpen }) => {
                         {user ? (
                             <div className="user-profile-mini">
                                 <span className="user-name">Hi, {user.name.split(' ')[0]}</span>
+                                {user.role === 'admin' && (
+                                    <Link to="/admin" className="header-auth-btn admin-link">Admin</Link>
+                                )}
                                 <button onClick={() => { logout(); navigate('/'); }} className="header-auth-btn">Logout</button>
                             </div>
                         ) : (

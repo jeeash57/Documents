@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const CheckoutPage = () => {
     const { cartItems, subtotal, clearCart } = useCart();
+    const { user } = useAuth();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -14,6 +16,18 @@ const CheckoutPage = () => {
         address: '',
         paymentMethod: 'card'
     });
+
+    useEffect(() => {
+        if (user) {
+            setFormData(prev => ({
+                ...prev,
+                fullName: user.name || '',
+                email: user.email || '',
+                phone: user.phone || '',
+                address: [user.address, user.city, user.zip, user.country].filter(Boolean).join(', ') || ''
+            }));
+        }
+    }, [user]);
 
     const shipping = subtotal > 50 ? 0 : 5;
     const total = subtotal + shipping;
@@ -128,9 +142,19 @@ const CheckoutPage = () => {
                                     <option value="bank_transfer">Bank Transfer</option>
                                 </select>
                             </div>
-                            <button type="submit" className="btn btn-primary" disabled={loading} style={{ marginTop: '20px', padding: '15px' }}>
-                                {loading ? 'Processing...' : `Place Order - $${total.toFixed(2)}`}
-                            </button>
+                            <div style={{ display: 'flex', gap: '15px', marginTop: '20px' }}>
+                                <button
+                                    type="button"
+                                    className="btn-outline-rw"
+                                    onClick={() => navigate(-1)}
+                                    style={{ flex: 1, padding: '15px', color: '#000', borderColor: '#000' }}
+                                >
+                                    Back
+                                </button>
+                                <button type="submit" className="btn btn-primary" disabled={loading} style={{ flex: 2, padding: '15px' }}>
+                                    {loading ? 'Processing...' : `Place Order - $${total.toFixed(2)}`}
+                                </button>
+                            </div>
                         </div>
                     </form>
 

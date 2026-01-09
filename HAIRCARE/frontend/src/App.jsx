@@ -10,6 +10,7 @@ import CartPage from './pages/Cart';
 import CheckoutPage from './pages/Checkout';
 import LoginPage from './pages/Login';
 import RegisterPage from './pages/Register';
+import AdminDashboard from './pages/AdminDashboard';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import './App.css';
@@ -36,6 +37,7 @@ function App() {
                   <Route path="/checkout" element={<CheckoutPage />} />
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/admin" element={<AdminDashboard />} />
                 </Routes>
               </main>
               <Footer />
